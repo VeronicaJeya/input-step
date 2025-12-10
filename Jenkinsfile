@@ -35,15 +35,7 @@ pipeline {
                 }
             }
         } 
-     stage('Input Certificate') {
-            steps {
-                script {
-                    def userInput = input message: 'Select the credential', parameters: [credentials(credentialType: 'com.cloudbees.plugins.credentials.impl.CertificateCredentialsImpl', defaultValue: 'certificate_global_v_ID', description: 'certificate_global_v_sep15_ID', name: 'certificate', required: false)]
-                    echo "User selected: ${userInput}"
-                    
-                }
-            }
-        } 
+     
      stage('Username') {
             steps {
                 script {

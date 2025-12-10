@@ -52,6 +52,75 @@ pipeline {
                 }
             }
         }
+
+        stage('Input Password') {
+            steps {
+                script {
+                    def userInput = input message: 'Select the password', parameters: [password(defaultValue: 'abcd', description: 'Desc-password', name: 'Password')]
+                    echo "User selected: ${userInput}"
+                    
+                }
+            }
+        }
+        stage('multiline') {
+            steps {
+                script {
+                    def userInput = input message: 'Select the multiline', parameters: [text(defaultValue: '''AA
+                    SS
+                    DD
+                    FF
+                    11
+                    12''', name: 'multiline')]
+                    echo "User selected: ${userInput}"
+                    
+                }
+            }
+        }
+        stage('choice') {
+            steps {
+                script {
+                    def userInput = input message: 'Select the choice', parameters: [choice(choices: ['AA', 'BB', '11', '22'], description: 'Choice selected', name: 'choice')]
+                    echo "User selected: ${userInput}"
+                    
+                }
+            }
+        }
+        
+        stage('User Input for Run Parameter') {
+            steps {
+                script {
+                   def userInput = input message: 'Select the build', parameters: [run(filter: 'ALL', name: 'PARAMETER_NAME', projectName: 'HomeFolder-vero/freestyle_downstream')]
+                    echo "User selected build: ${userInput}"
+                }
+            }
+        }
+     stage('Input String') {
+            steps {
+                script {
+                    def userInput = input message: 'Select the string', parameters: [string(defaultValue: 'abcd', description: 'desc-string', name: 'string')]
+                    echo "User selected: ${userInput}"
+                }
+            }
+        }
+     stage('Input Text') {
+            steps {
+                script {
+                    // Prompt the user for text input
+                    def userInput = input message: 'Please enter some text:', parameters: [
+                        string(name: 'UserInput', description: 'Enter your value here')
+                    ]
+                    echo "You entered: ${userInput}"
+                }
+            }
+        }
+   stage('Input Boolean') {
+            steps {
+                script {
+                   def boo = input(message: 'Click to proceed', ok: 'Continue', parameters: [booleanParam(name: 'boolean')])
+                   echo "${boo}"       
+               } 
+            }
+        }
       
     }
     

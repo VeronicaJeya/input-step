@@ -81,7 +81,7 @@ pipeline {
         stage('User Input for Run Parameter') {
             steps {
                 script {
-                   def userInput = input message: 'Select the build', parameters: [run(filter: 'ALL', name: 'PARAMETER_NAME', projectName: 'HomeFolder-vero/freestyle_downstream')]
+                   def userInput = input message: 'Select the build', parameters: [run(filter: 'ALL', name: 'RUN PARAMETER', projectName: 'Folder-Veronica/freestyle_buildPeriodically')]
                     echo "User selected build: ${userInput}"
                 }
             }
